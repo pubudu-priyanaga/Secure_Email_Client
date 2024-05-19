@@ -3,6 +3,10 @@
 ## Description
 Secure Email Client is an email client based on python language.
 
+## Contribution
+IT21184758 - Liyanage P.P.
+IT21170720 - Jayawickrama K.D.S.P
+
 ## Python version
 `$ python --version`\
 `Python 3.8.5`

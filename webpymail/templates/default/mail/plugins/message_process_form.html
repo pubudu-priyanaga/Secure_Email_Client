@@ -1,0 +1,49 @@
+{% load loader_tags %}{% extends 'base/base.html' %}
+{% load i18n %}
+{% load webtags %}
+
+{% block inpage_title %}{{ folder }}{% endblock %}
+
+{% block headercontent %}
+<link href="{{ STATIC_URL }}css/message_list.css" rel="stylesheet" type="text/css"></link>
+<link href="{{ STATIC_URL }}css/plugins/message_process.css" rel="stylesheet" type="text/css"></link>
+<link href="{{ STATIC_URL }}css/plugins/custom_form.css" rel="stylesheet" type="text/css"></link>
+{% endblock %}
+
+{% block extra_menus %}
+<a href="{% url 'folder_list' %}">
+  <img class="top_menu_entry" src="{{ STATIC_URL }}img/folder.svg" width="32px" height="32px" title="{% trans "Folder List" %}">
+</a>
+<a href="{% url 'mailapp_send_message' %}">
+  <img class="top_menu_entry" src="{{ STATIC_URL }}img/mail-message-new.svg" width="32px" height="32px" title="{% trans "New Message" %}">
+</a>
+&nbsp;
+{% endblock %}
+
+{% block contents %}
+<form id="message_process_form" method="post" enctype="multipart/form-data" action="{% url 'mailapp_message_process' folder=folder uid=uid %}">
+    {% csrf_token %}
+    <div class="form_container">
+    {% for field in form %}
+        <div class="form_field">
+            <div class="form_label">{{ field.label_tag }}</div>
+            <div class="form_value">
+                {{ field }}<br>
+                <span class="form_error">{{ field.errors.0 }}</span>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</form>
+
+<div id="bottom_toolbar">
+    <div class="toolbar_left">
+        <form method="get" action="{% url 'mailapp-message' folder=folder uid=uid %}">
+            <input type="submit" name="cancel" value="{% trans "Cancel" %}" />
+        </form>
+    </div>
+    <div class="toolbar_right">
+        <input form="message_process_form" type="submit" name="submit" value="{% trans "Submit" %}" />
+    </div>
+</div>
+{% endblock %}

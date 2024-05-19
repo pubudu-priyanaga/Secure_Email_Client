@@ -18,4 +18,4 @@ Secure Email Client is an email client based on python language.
 4. Run `./server.sh` to start mail client server.
 5. Access the url showed by Django (by default it is `http://127.0.0.1:8000/`) via browser in your desktop.
 6. On login page select `Google Gmail` for the `Imap Server`.
-7. Login to the mail client using your Gmail account. To setup IMAP access on Gmail and turn on Less Secure Apps see articles on **Notes to Setup Gmail Account** below.
+7. Login to the mail client using your Gmail account.
